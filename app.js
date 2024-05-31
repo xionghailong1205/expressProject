@@ -8,12 +8,12 @@ var usersRouter = require('./routes/users');
 const port = 3000;
 var app = express();
 
-app.use('/users/addpost',(req, res, next) => {
+app.use('/users/addpost', (req, res, next) => {
     console.log(`POST from a user`);
     next();
 });
 
-let countnum=0;
+let countnum = 0;
 app.use((req, res, next) => {
     countnum++;
     console.log(`Received ${countnum} requests`);
@@ -26,6 +26,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/test', express.static('public/test.html'));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
