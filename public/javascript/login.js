@@ -1,5 +1,5 @@
 const app = new Vue({
-    el: '.role_selector',
+    el: '.login_form',
     data: {
         role: 'admin'
     },
