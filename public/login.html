@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <link rel="stylesheet" href="./stylesheets/login.css">
     <title>Document</title>
 </head>
@@ -11,9 +12,40 @@
 <body>
     <div class="main">
         <div class="login_form">
-            简单登录表格
+            <div class="role_selector">
+                <div class="role_selector_title">
+                    Select login roler
+                </div>
+                <div class="role_box" v-on:click="changeRole('user')">
+                    <img src="/image/icons/user.png" class="login_icon" />
+                    <div class="login_role">
+                        Log in as user
+                    </div>
+                </div>
+                <div class="role_box" v-on:click="changeRole('organization')">
+                    <img src="/image/icons/organization.png" class="login_icon" />
+                    <div class="login_role">
+                        Log in as organization
+                    </div>
+                </div>
+                <div class="role_box" v-on:click="changeRole('admin')">
+                    <img src="/image/icons/admin.png" class="login_icon" />
+                    <div class="login_role">
+                        Log in as admin
+                    </div>
+                </div>
+                <div>
+                    Now Role: {{ role }}
+                </div>
+            </div>
+            <div class="form_input">
+                <div id="app">
+                    {{ message }}
+                </div>
+            </div>
         </div>
     </div>
+    <script src="./javascript/login.js"></script>
 </body>
 
 </html>

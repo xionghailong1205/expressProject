@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0px;
 }
@@ -10,7 +14,57 @@ body {
 }
 
 .login_form {
-    height: 800px;
+    height: 500px;
     width: 800px;
     border: 1px solid yellow;
+    display: flex;
+
+}
+
+.role_selector {
+    flex: 1;
+    border: 1px solid red;
+    background-color: #59A5DB;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.role_selector_title {
+    width: 280px;
+    color: rgba(255, 255, 255, 0.788);
+    font-size: 22px;
+}
+
+.role_box {
+    display: flex;
+    align-items: center;
+    width: 280px;
+    height: 70px;
+    background-color: #118CD9;
+    gap: 10px;
+    cursor: pointer;
+    user-select: none;
+    padding-left: 20px;
+}
+
+.role_box:active {
+    border: 1px solid red;
+}
+
+.form_input {
+    flex: 1;
+    border: 1px solid red;
+}
+
+.login_icon {
+    width: 40px;
+    aspect-ratio: 1/1;
+}
+
+.login_role {
+    color: rgb(225, 233, 238);
+    font-size: 18px;
 }
