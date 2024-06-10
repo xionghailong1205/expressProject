@@ -65,7 +65,12 @@ router.get('/viewEvents', (req, res) => {
 
 router.get("/eventList", (req, res) => {
     const db = getdb()
-    const orgId = req.session.orgId ?? 3
+    const orgId = req.session.orgId
+
+    if (!orgId) {
+        res.json({ error: "Has not join in organization now." })
+        return
+    }
 
     db.query(`SELECT events.event_title, events.event_content, events.event_content, events.update_at, events.open_time, events.close_time, managers.manager_name
     FROM
@@ -242,6 +247,11 @@ router.get('/getUpdateList', (req, res) => {
     const db = getdb()
     const orgId = req.session.orgId
     console.log(orgId)
+
+    if (!orgId) {
+        res.json({ error: "Has not join in organization now." })
+        return
+    }
 
     db.query(`
             SELECT

@@ -16,6 +16,7 @@ var example1 = new Vue({
             const setData = (dataFromBE) => {
                 const orgList = dataFromBE.map(orgInfo => {
                     return {
+                        orgId: orgInfo.org_id,
                         orgName: orgInfo.org_name ?? "尚未设置组织名",
                         orgDescription: orgInfo.org_description ?? "尚未设置介绍",
                         orgImge: orgInfo.org_img ?? "default.png"
@@ -25,6 +26,13 @@ var example1 = new Vue({
             }
 
             getOrganizationList(setData)
+        },
+        handleJoinIn(orgId) {
+            const requestBody = {
+                orgId
+            }
+
+            joinInOrg(requestBody)
         }
     }
 })
@@ -43,6 +51,26 @@ function getOrganizationList(setData) {
 
     xhr.open("GET", "/organization/organizationList");
     xhr.setRequestHeader("Accept", "*/*");
+
+    xhr.send(data);
+}
+
+function joinInOrg(requestBody) {
+    const data = JSON.stringify(requestBody);
+
+    const xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
+
+    xhr.addEventListener("readystatechange", function () {
+        if (this.readyState === this.DONE) {
+            const reuslt = JSON.parse(this.responseText).result
+            alert(reuslt)
+        }
+    });
+
+    xhr.open("POST", "/user/handleJoinIn");
+    xhr.setRequestHeader("Accept", "*/*");
+    xhr.setRequestHeader("Content-Type", "application/json");
 
     xhr.send(data);
 }

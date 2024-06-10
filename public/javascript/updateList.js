@@ -3,12 +3,7 @@ var updateList = new Vue({
     el: '#updateList',
     data: {
         updateList: [
-            {
-                updateContent: "",
-                updateAccessibility: "",
-                createAt: "",
-                creater: ""
-            }
+
         ],
     },
     mounted() {
@@ -33,7 +28,12 @@ function getUpdateList(setData) {
 
     xhr.addEventListener("readystatechange", function () {
         if (this.readyState === this.DONE) {
-            setData(JSON.parse(this.responseText))
+            const updateList = JSON.parse(this.responseText)
+            if (updateList.error) {
+                alert(updateList.error)
+                location.href = '/'
+            }
+            setData(updateList)
         }
     });
 

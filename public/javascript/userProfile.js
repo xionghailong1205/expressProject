@@ -45,11 +45,12 @@ function getUserProfileFromBE() {
 
         xhr.addEventListener("readystatechange", function () {
             if (this.readyState === this.DONE) {
+                console.log(this.responseText)
                 resolve(JSON.parse(this.responseText).data)
             }
         });
 
-        xhr.open("GET", "http://localhost:8848/user/getUserProfileData");
+        xhr.open("GET", "/user/getUserProfileData");
         xhr.setRequestHeader("Accept", "*/*");
 
         xhr.send(data);

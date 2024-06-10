@@ -40,6 +40,12 @@ function getEventList(setData, RVSPedEventList) {
     xhr.addEventListener("readystatechange", function () {
         if (this.readyState === this.DONE) {
             let eventList = JSON.parse(this.responseText)
+            if (eventList.error) {
+                alert(eventList.error)
+                location.href = '/'
+            }
+
+            console.log(eventList)
             eventList = eventList.map(eventInfo => {
 
                 const hasRVSPed = Boolean(RVSPedEventList.find(RVSPedEventInfo => {

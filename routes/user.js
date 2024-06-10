@@ -44,8 +44,9 @@ router.get('/newEvent', (req, res) => {
 router.get('/getUserProfileData', (req, res) => {
     const db = getdb()
     const user_email = req.session.email ?? "xionghailongk@icloud.com"
+    console.log(user_email)
 
-    db.query(`SELECT users.*, volunteerOrganizations.org_name FROM users INNER JOIN volunteerOrganizations ON users.memberof = volunteerOrganizations.org_id WHERE users.user_email = "${user_email}"`, async (err, results) => {
+    db.query(`SELECT users.*, volunteerOrganizations.org_name FROM users LEFT JOIN volunteerOrganizations ON users.memberof = volunteerOrganizations.org_id WHERE users.user_email = "${user_email}"`, async (err, results) => {
         if (err) {
             console.log(err)
             res.json({
@@ -54,6 +55,10 @@ router.get('/getUserProfileData', (req, res) => {
         }
 
         const userInfo = results[0]
+
+        if (userInfo) {
+
+        }
 
         console.log(userInfo)
 
@@ -86,6 +91,7 @@ router.post('/updateUserProfile', (req, res) => {
         }
 
         console.log(results)
+        res.cookie('name', newName)
         res.json({ result: "update successful" })
     });
 })
@@ -151,6 +157,42 @@ router.post('/doRVSP', (req, res) => {
         })
     });
 
+})
+
+router.post('/handleJoinIn', (req, res) => {
+    const { orgId } = req.body
+
+    if (req.session.orgId) {
+        res.json({
+            result: "Fail! Has join in Organization."
+        })
+        return
+    }
+
+    const email = req.session.email ?? "test@qq.com"
+    console.log(email)
+
+    const db = getdb()
+
+    db.query(`
+        UPDATE users
+            SET
+                memberof = ${orgId}
+            WHERE
+                user_email = "${email}";
+    `, async (err, results) => {
+        if (err) {
+            console.log(err)
+            res.json({
+                error: "something wrong"
+            })
+        }
+
+        req.session.orgId = orgId
+        res.json({
+            result: "Join successful"
+        })
+    });
 })
 
 module.exports = router;
