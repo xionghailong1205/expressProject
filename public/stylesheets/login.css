@@ -14,17 +14,16 @@ body {
 }
 
 .login_form {
-    height: 500px;
     width: 800px;
-    border: 1px solid yellow;
+    border: 1px solid rgba(128, 128, 128, 0.398);
+    box-shadow: gray 10px;
     display: flex;
 
 }
 
 .role_selector {
     flex: 1;
-    border: 1px solid red;
-    background-color: #59A5DB;
+    background-color: #007bff;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -43,20 +42,22 @@ body {
     align-items: center;
     width: 280px;
     height: 70px;
-    background-color: #118CD9;
+    /* background-color: #118CD9; */
     gap: 10px;
     cursor: pointer;
     user-select: none;
     padding-left: 20px;
 }
 
-.role_box:active {
-    border: 1px solid red;
-}
+.role_box:active {}
 
 .form_input {
     flex: 1;
-    border: 1px solid red;
+    padding: 40px 30px;
+}
+
+.form_input button {
+    margin-top: 30px;
 }
 
 .login_icon {
@@ -70,14 +71,19 @@ body {
 }
 
 .form_input_title {
+    margin-bottom: 20px;
+}
+
+.form_input_title>div:nth-child(1) {
     color: #3256EA;
-    font-size: 22px;
+    font-size: 24px;
 }
 
 input[type="text"],
 input[type="email"],
 input[type="password"],
-button {
+button,
+select {
     display: block;
     width: 100%;
     margin-bottom: 10px;
@@ -89,4 +95,48 @@ button {
     color: #fff;
     border: none;
     cursor: pointer;
+}
+
+.form_field {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin-bottom: 10px;
+}
+
+.form_field label {
+    font-size: 16px;
+    color: gray;
+    margin-bottom: 5px;
+}
+
+.form_field input {
+    margin-bottom: 3px;
+}
+
+.form_field_error {
+    margin: 0px;
+    color: red;
+    font-size: 14px;
+    padding-left: 5px;
+}
+
+.form_input_footer {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.form_input_footer a {
+    color: rgba(36, 36, 230, 0.883);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.form_input_footer a:hover {
+    color: blue;
+}
+
+.errormsg_from_be {
+    margin-bottom: -15px;
+    color: rgba(225, 6, 6, 0.835);
 }

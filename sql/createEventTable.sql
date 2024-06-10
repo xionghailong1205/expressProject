@@ -1,6 +1,6 @@
 CREATE TABLE events (
     event_id SERIAL PRIMARY KEY,
-    org_id INT REFERENCES organizations(org_id),
+    org_id INT REFERENCES organizations (org_id),
     title VARCHAR(100) NOT NULL,
     description TEXT,
     start_date TIMESTAMP,

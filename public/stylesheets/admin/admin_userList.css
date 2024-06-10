@@ -1,0 +1,4 @@
+.userList_header>div:nth-child(5),
+.userList_row>div:nth-child(5) {
+    flex: 1;
+}

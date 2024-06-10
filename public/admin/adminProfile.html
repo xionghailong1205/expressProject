@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <link rel="stylesheet" href="/stylesheets/pageLayout.css">
+    <link rel="stylesheet" href="/stylesheets/userProfile.css">
+</head>
+
+<body>
+    <div class="page_sideBar_container" id="userInfo">
+        <div class="page_sideBar_logo">
+            My Organization
+        </div>
+        <div class="sidebar-router-container">
+            <div class="page_sideBar_router">
+                <a href="/">Organization List</a>
+            </div>
+            <div class="page_sideBar_router">
+                <a href="/admin/userList">User List</a>
+            </div>
+            <div class="page_sideBar_router" data-nowpage="true">
+                <a href="/admin/adminProfile">Admin Profile</a>
+            </div>
+            <div class="page_sideBar_router">
+                <a href="/admin/addNewAdmin">Add New Admin</a>
+            </div>
+            <div class="log_state">
+                <p class="log_state_help"><span class="info_role">{{userInfo.role}}</span> | <span
+                        class="info_name">{{userInfo.name}}</span></p>
+                <p class="log_state_action"><a href="/handleLogOut">Log out</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="page_content_container">
+        <div class="page_content_header">
+        </div>
+        <div class="page_content_main" style="padding-top: 40px;">
+            <div class="profile_form_container" id="profileForm">
+                <div class="profile_form_row">
+                    <div class="profile_avatar_box">
+                        <img src="/image/profileImage/newUser.png" alt="头像" class="profile_avatar_img">
+                    </div>
+                    <div>
+                        <div class="profile_form_username">
+                            {{name}}
+                        </div>
+                        <div class="profile_form_useraddress">
+                            admin
+                        </div>
+                    </div>
+                </div>
+                <div class="profile_form_row">
+                    <div class="profile_form_column">
+                        <label for="Email">Email</label>
+                        <input name="Email" id="Email" v-model="email" readonly style="border: none; outline: none;" />
+                    </div>
+                    <div class="profile_form_column">
+                        <label for="Name">Name</label>
+                        <input name="Name" id="Name" v-model="name" />
+                    </div>
+                </div>
+                <div class="profile_form_row">
+                    <div class="profile_form_column">
+                        <label for="Number">Number</label>
+                        <input name="Number" id="Number" v-model="number" />
+                    </div>
+                    <div class="profile_form_column" style="visibility: hidden;">
+                        <label for="placeHolder">placeHolder</label>
+                        <input name="placeHolder" id="placeHolder" />
+                    </div>
+                </div>
+                <div class="profile_form_commitrow">
+                    <div class="profile_form_commitbutton">
+                        <button>save change</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/javascript/router.js"></script>
+    <script src="/javascript/adminProfile.js"></script>
+    <script src="/javascript/getUserInfo.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+.profile_form_container {
+    width: 600px;
+}
+
+.profile_avatar_box {
+    height: 100px;
+    width: 100px;
+    border-radius: 100%;
+    overflow: hidden;
+}
+
+.profile_avatar_img {
+    height: 100%;
+    aspect-ratio: 1/1;
+}
+
+.profile_form_row:nth-of-type(1) {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+.profile_form_row {
+    display: flex;
+    gap: 50px;
+    justify-content: space-between;
+    padding: 0px 20px;
+}
+
+.profile_form_row:nth-of-type(1) {
+    margin-top: 0px;
+}
+
+.profile_form_row:nth-of-type(2) {
+    margin-top: 60px;
+}
+
+.profile_form_row {
+    margin-top: 30px;
+}
+
+.profile_form_column {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 5px;
+}
+
+.profile_form_column label {
+    font-size: 13px;
+    color: gray;
+}
+
+.profile_form_column input {
+    height: 30px;
+}
+
+.profile_form_username {
+    font-size: 20px;
+}
+
+.profile_form_useraddress {
+    font: 12px;
+    color: rgba(128, 128, 128, 0.694);
+}

@@ -1,0 +1,15 @@
+.organization_cover {
+    height: 250px;
+    margin-top: 20px;
+}
+
+.organization_cover img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: top;
+}
+
+.organization_profile_editor {
+    width: 600px;
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./stylesheets/admin/admin_userList.css">
+    <link rel="stylesheet" href="/stylesheets/pageLayout.css">
+    <link rel="stylesheet" href="/stylesheets/List.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+    <div class="page_sideBar_container" id="userInfo">
+        <div class="page_sideBar_logo">
+            My Organization
+        </div>
+        <div class="sidebar-router-container">
+            <div class="page_sideBar_router" data-nowpage="true">
+                <a href="/">View Members</a>
+            </div>
+            <div class="page_sideBar_router">
+                <a href="/manager/createUpdate">Create Update</a>
+            </div>
+            <div class="page_sideBar_router">
+                <a href="/manager/createEvent">Create Event</a>
+            </div>
+            <div class="page_sideBar_router">
+                <a href="/manager/viewEvents">View Events</a>
+            </div>
+            <div class="log_state">
+                <p class="log_state_help"><span class="info_role">{{userInfo.role}}</span> | <span
+                        class="info_name">{{userInfo.name}}</span></p>
+                <p class="log_state_action"><a href="/handleLogOut">Log out</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="page_content_container">
+        <div class="page_content_header">
+        </div>
+        <div class="page_content_main">
+            <div style="width: 95%; padding-top: 20px;" id="memberList">
+                <div class="list_title">
+                    List of branch organization:
+                </div>
+                <div class="list_header">
+                    <div>Name</div>
+                    <div>Email</div>
+                    <div>Phone Number</div>
+                    <div>Address</div>
+                    <div>Action</div>
+                </div>
+                <div class="userList_row" v-for="member in memberList" :key="member.email">
+                    <div>
+                        {{member.name}}
+                    </div>
+                    <div>
+                        {{member.email}}
+                    </div>
+                    <div>
+                        {{member.number}}
+                    </div>
+                    <div>
+                        {{member.address}}
+                    </div>
+                    <div>delete_branch</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/javascript/router.js"></script>
+    <script src="/javascript/memberList.js"></script>
+    <script src="/javascript/getUserInfo.js"></script>
+</body>
+
+</html>

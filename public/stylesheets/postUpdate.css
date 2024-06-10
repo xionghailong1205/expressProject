@@ -1,0 +1,73 @@
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+    margin: 0px;
+    display: flex;
+}
+
+.post_accessibility_button {
+    display: flex;
+    gap: 20px;
+}
+
+.post_accessibility_button button {
+    width: 120px;
+}
+
+.page_sideBar_container {
+    width: 200px;
+    height: 100vh;
+}
+
+/* 这个需要应用到所有的页面上 */
+.page_content_container {
+    flex: 1;
+    border: 1px solid rgb(23, 90, 205);
+}
+
+.update-box {
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.update_content {
+    resize: none;
+    width: 100%;
+    outline: none;
+    border: none;
+}
+
+.update_action {
+    display: flex;
+    justify-content: space-between;
+}
+
+button {
+    border: none;
+    background-color: white;
+    border: 1px solid gray;
+    padding: 10px;
+    color: black;
+    margin-bottom: 0px;
+}
+
+.update_action button.isActive {
+    background-color: #007bff;
+    color: white;
+    border: none;
+}
+
+.post_title {
+    font-size: 24px;
+    color: rgb(50, 86, 234);
+    padding-bottom: 10px;
+}
+
+.post_button {
+    border: none;
+    color: white;
+    background-color: #007bff;
+}

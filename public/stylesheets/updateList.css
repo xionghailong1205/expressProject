@@ -1,0 +1,53 @@
+.updateList_title {
+    font-size: 24px;
+    color: rgb(50, 86, 234);
+    padding-bottom: 10px;
+}
+
+.update_list {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.update_additional_info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.update_box {
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.update_content {
+    height: 100px;
+}
+
+.update_accessibility_public {
+    background-color: rgb(102, 187, 106);
+    padding: 3px 12px;
+    font-size: 12px;
+    color: rgb(255, 255, 255);
+    border-radius: 15px;
+}
+
+.update_accessibility_private {
+    background-color: rgb(156, 39, 176);
+    padding: 3px 12px;
+    font-size: 12px;
+    color: white;
+    border-radius: 15px;
+}
+
+.update_create_time {
+    font-size: 12px;
+    color: rgba(85, 83, 83, 0.614);
+}
+
+.update_info {
+    /* padding-left: 50px; */
+    font-size: 14px;
+}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <link rel="stylesheet" href="/stylesheets/pageLayout.css">
+    <link rel="stylesheet" href="/stylesheets/userProfile.css">
+</head>
+
+<body>
+    <div class="page_sideBar_container">
+        <div class="page_sideBar_logo">
+            My Organization
+        </div>
+        <div class="sidebar-router-container">
+            <div class="page_sideBar_router">
+                <a href="/">Organization List</a>
+            </div>
+            <div class="page_sideBar_router">
+                <a href="/user/newUpdate">New Updates</a>
+            </div>
+            <div class="page_sideBar_router">
+                <a href="/user/newEvent">New Events</a>
+            </div>
+            <div class="page_sideBar_router" data-nowpage="true">
+                <a href="/user/profile">User Profile</a>
+            </div>
+            <div class="log_state">
+                <p class="log_state_help"><span class="info_role">{{userInfo.role}}</span> | <span
+                        class="info_name">{{userInfo.name}}</span></p>
+                <p class="log_state_action"><a href="/handleLogOut">Log out</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="page_content_container">
+        <div class="page_content_header">
+            <!-- <div class="user_dropdown">
+                <div class="user_profile_icon">
+                    <img src="/image/profileImage/me.jpg" alt="useProfile">
+                </div>
+                <div class="dropdown_container">
+                    123
+                </div>
+            </div> -->
+        </div>
+        <div class="page_content_main" style="padding-top: 40px;">
+            <div class="profile_form_container" id="profileForm">
+                <div class="profile_form_row">
+                    <div class="profile_avatar_box">
+                        <img src="/image/profileImage/newUser.png" alt="头像" class="profile_avatar_img">
+                    </div>
+                    <div>
+                        <div class="profile_form_username">
+                            {{userName}}
+                        </div>
+                        <div class="profile_form_useraddress">
+                            {{organization}}
+                        </div>
+                    </div>
+                </div>
+                <div class="profile_form_row">
+                    <div class="profile_form_column">
+                        <label for="Email">Email</label>
+                        <input name="Email" id="Email" v-model="email" readonly style="border: none; outline: none;" />
+                    </div>
+                    <div class="profile_form_column">
+                        <label for="Name">Name</label>
+                        <input name="Name" id="Name" v-model="name" />
+                    </div>
+                </div>
+                <div class="profile_form_row">
+                    <div class="profile_form_column">
+                        <label for="Number">Number</label>
+                        <input name="Number" id="Number" v-model="number" />
+                    </div>
+                    <div class="profile_form_column">
+                        <label for="address">Address</label>
+                        <input name="address" id="address" v-model="address" />
+                    </div>
+                </div>
+                <div class="profile_form_commitrow">
+                    <div class="profile_form_commitbutton">
+                        <button @click="updateUserProfile">save change</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/javascript/router.js"></script>
+    <script src="/javascript/userProfile.js"></script>
+</body>
+
+</html>

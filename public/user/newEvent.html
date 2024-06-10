@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/pageLayout.css">
+    <link rel="stylesheet" href="/stylesheets/eventList.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+</head>
+
+<body>
+    <div class="page_sideBar_container" id="userInfo">
+        <div class="page_sideBar_logo">
+            My Organization
+        </div>
+        <div class="sidebar-router-container">
+            <div class="page_sideBar_router">
+                <a href="/">Organization List</a>
+            </div>
+            <div class="page_sideBar_router">
+                <a href="/user/newUpdate">New Updates</a>
+            </div>
+            <div class="page_sideBar_router" data-nowpage="true">
+                <a href="/user/newEvent">New Events</a>
+            </div>
+            <div class="page_sideBar_router" onclick="">
+                <a href="/user/profile">User Profile</a>
+            </div>
+            <div class="log_state">
+                <p class="log_state_help"><span class="info_role">{{userInfo.role}}</span> | <span
+                        class="info_name">{{userInfo.name}}</span></p>
+                <p class="log_state_action"><a href="/handleLogOut">Log out</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="page_content_container">
+        <div class="page_content_header">
+        </div>
+        <div class="page_content_main">
+            <div style="width: 800px; padding-top: 20px;" id="eventList">
+                <div class="list_title">
+                    View Events:
+                </div>
+                <div class="event_list_container" v-for="event in eventList" :key="event.eventTitle">
+                    <div class="event_list_row">
+                        <div class="event_list_img">
+                            E
+                        </div>
+                        <div class="event_list_info">
+                            <div class="list_info_header">
+                                <div class="list_info_title">{{event.eventTitle}}</div>
+                                <div class="list_info_eventTime">Event Time:{{event.startTime}} - {{event.endTime}}
+                                </div>
+                            </div>
+
+                            <div class="list_info_content">{{event.eventContent}}</div>
+                            <div class="list_info_footer">
+                                <div>Update at: {{event.updateAt}}</div>
+                                <div>Create by: {{event.creater}}</div>
+                            </div>
+                        </div>
+                        <div class="list_info_action">
+                            <button v-if="!event.hasRVSPed" @click="RVSPToEvent(event.eventTitle)">RVSP</button>
+                            <button v-else style="background-color: gray; cursor: unset;">Has RVSPed</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/javascript/router.js"></script>
+    <script src="/javascript/eventListUser.js"></script>
+    <script src="/javascript/getUserInfo.js"></script>
+</body>
+
+</html>

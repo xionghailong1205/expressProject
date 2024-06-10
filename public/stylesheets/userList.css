@@ -1,0 +1,56 @@
+.user_box {
+    border: 1px solid gray;
+    display: flex;
+}
+
+.profile_img {
+    height: 50px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.userList_header {
+    background-color: #2477F2;
+    color: #fbfcfd;
+    height: 40px;
+}
+
+.userList_row {
+    height: 30px;
+}
+
+.userList_header>div,
+.userList_row>div {
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.userList_header,
+.userList_row {
+    display: flex;
+    border: 1px solid gray;
+}
+
+.userList_header>div:nth-child(1),
+.userList_row>div:nth-child(1) {
+    flex: 1;
+}
+
+.userList_header>div:nth-child(2),
+.userList_row>div:nth-child(2) {
+    flex: 1;
+}
+
+.userList_header>div:nth-child(3),
+.userList_row>div:nth-child(3) {
+    flex: 1;
+}
+
+.userList_header>div:nth-child(4),
+.userList_row>div:nth-child(4) {
+    flex: 1;
+}
+
+/* .userList_header:nth-child(1) {} */

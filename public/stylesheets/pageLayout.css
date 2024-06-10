@@ -1,0 +1,166 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0px;
+    display: flex;
+}
+
+.page_sideBar_container {
+    position: relative;
+    min-width: 200px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-router-container {
+    flex: 1;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    padding: 20px;
+    background-color: #007bff;
+}
+
+.page_sideBar_router {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    color: white;
+    padding-left: 10px;
+    cursor: pointer;
+}
+
+.page_sideBar_router[data-nowpage="true"] {
+    background: rgba(35, 50, 212, 0.188);
+    border-radius: 10px;
+}
+
+.page_sideBar_logo {
+    background-color: rgb(3, 59, 109);
+    height: 50px;
+    color: white;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    background-color: rgb(23, 90, 205);
+    cursor: pointer;
+}
+
+/* 这个需要应用到所有的页面上 */
+.page_content_container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.page_content_main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    overflow: auto;
+}
+
+button {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.profile_form_commitrow {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.profile_form_commitbutton {
+    width: 200px;
+}
+
+.page_content_header {
+    height: 50px;
+    background-color: rgb(23, 90, 205);
+    color: white;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    padding-right: 20px;
+}
+
+.user_dropdown {
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user_dropdown img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    object-position: top;
+}
+
+.user_profile_icon {
+    height: 90%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.dropdown_container {
+    height: 100px;
+    width: 100px;
+    border: 1px solid red;
+    z-index: 20;
+    position: absolute;
+    top: 50px;
+    right: -20px;
+}
+
+.log_state {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    bottom: 10px;
+    width: 150px;
+}
+
+.log_state p {
+    margin: 2px;
+}
+
+.log_state .log_state_help {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.738);
+}
+
+.log_state .log_state_action {
+    font-size: 15px;
+    color: rgb(249, 249, 249);
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    color: rgba(255, 255, 255, 0.431)
+}

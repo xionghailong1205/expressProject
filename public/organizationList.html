@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./stylesheets/pageLayout.css">
+    <link rel="stylesheet" href="./stylesheets/organization.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="page_sideBar_container">
+        <div class="page_sideBar_logo">
+            My Organization
+        </div>
+        <div class="sidebar-router-container">
+            <div class="page_sideBar_router" data-nowpage="true">
+                Organization List
+            </div>
+            <div class="log_state">
+                <p class="log_state_help">Not logged in yet? </p>
+                <p class="log_state_action"><a href="/login">Log in</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="page_content_container">
+        <div class="page_content_header">
+        </div>
+        <div class="page_content_main">
+            <div id="app">
+                <!-- 这个 div 之后我们会使用 grid -->
+                <div class="grid-container">
+                    <div class="grid-column" v-for="org in orgList" :key="org.orgName">
+                        <div class="orgbox">
+                            <div class="orgbox_img_container">
+                                <img :src="`/image/organization/${org.orgImge}`" alt="封面" class="orgbox_img" />
+                            </div>
+                            <div class="org_title">
+                                {{org.orgName}}
+                            </div>
+                            <div class="org_description">
+                                {{org.orgDescription}}
+                            </div>
+                            <div class="orgbox_actionlist">
+                                <button>view update</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/javascript/organization.js"></script>
+</body>
+
+</html>

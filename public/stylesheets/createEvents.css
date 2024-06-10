@@ -1,0 +1,34 @@
+.event_content_area {
+    resize: none;
+    width: 100%;
+}
+
+.crate_event_form {
+    margin-top: 20px;
+    width: 800px;
+}
+
+.form_title {
+    font-size: 24px;
+    color: rgb(50, 86, 234);
+    padding-bottom: 10px;
+}
+
+input,
+textarea,
+button {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.event_createTime_row {
+    display: flex;
+    gap: 10px;
+}
+
+.event_createTime_row>div {
+    flex: 1;
+}

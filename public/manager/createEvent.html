@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/pageLayout.css">
+    <link rel="stylesheet" href="/stylesheets/createEvents.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="page_sideBar_container" id="userInfo">
+        <div class="page_sideBar_logo">
+            My Organization
+        </div>
+        <div class="sidebar-router-container">
+            <div class="page_sideBar_router">
+                <a href="/">View Members</a>
+            </div>
+            <div class="page_sideBar_router">
+                <a href="/manager/createUpdate">Create Update</a>
+            </div>
+            <div class="page_sideBar_router" data-nowpage="true">
+                <a href="/manager/createEvent">Create Event</a>
+            </div>
+            <div class="page_sideBar_router">
+                <a href="/manager/viewEvents">View Events</a>
+            </div>
+            <div class="log_state">
+                <p class="log_state_help"><span class="info_role">{{userInfo.role}}</span> | <span
+                        class="info_name">{{userInfo.name}}</span></p>
+                <p class="log_state_action"><a href="/handleLogOut">Log out</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="page_content_container">
+        <div class="page_content_header">
+        </div>
+        <div class="page_content_main">
+            <div id="createForm">
+                <div class="crate_event_form">
+                    <div class="form_title">
+                        Create New Events
+                    </div>
+                    <div>
+                        <input name="eventTitle" placeholder="event title" v-model="eventTitle" />
+                    </div>
+                    <div>
+                        <Textarea class="event_content_area" rows="20" placeholder="event content"
+                            v-model="eventContent"></Textarea>
+                    </div>
+                    <div class="event_createTime_row">
+                        <div>
+                            Start Time
+                            <input type="date" v-model="startTime" />
+                        </div>
+                        <div>
+                            End Time
+                            <input type="date" v-model="endTime" />
+                        </div>
+                    </div>
+                    <button type="submit" @click="doCreate">Create event</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/javascript/router.js"></script>
+    <script src="/javascript/createEvent.js"></script>
+    <script src="/javascript/getUserInfo.js"></script>
+</body>
+
+</html>

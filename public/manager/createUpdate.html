@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/pageLayout.css">
+    <link rel="stylesheet" href="/stylesheets/postUpdate.css">
+    <link rel="stylesheet" href="/stylesheets/updateList.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+    <div class="page_sideBar_container" id="userInfo">
+        <div class="page_sideBar_logo">
+            My Organization
+        </div>
+        <div class="sidebar-router-container">
+            <div class="page_sideBar_router">
+                <a href="/">View Members</a>
+            </div>
+            <div class="page_sideBar_router" data-nowpage="true">
+                <a href="/manager/createUpdate">Create Update</a>
+            </div>
+            <div class="page_sideBar_router">
+                <a href="/manager/createEvent">Create Event</a>
+            </div>
+            <div class="page_sideBar_router">
+                <a href="/manager/viewEvents">View Events</a>
+            </div>
+            <div class="log_state">
+                <p class="log_state_help"><span class="info_role">{{userInfo.role}}</span> | <span
+                        class="info_name">{{userInfo.name}}</span></p>
+                <p class="log_state_action"><a href="/handleLogOut">Log out</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="page_content_container">
+        <div class="page_content_header">
+        </div>
+        <div class="page_content_main">
+            <div style="width: 95%; padding-top: 20px;">
+                <div class="post_title">
+                    Post a update:
+                </div>
+                <div class="update-box">
+                    <textarea name="update_content" id="update_content" class="update_content" rows="7"
+                        v-model="updateContent"></textarea>
+                    <div class="update_action">
+                        <div class="post_accessibility_button">
+                            <button :class="{ isActive: updateAccessibility === 'private' }"
+                                v-on:click="changeUpdateAccessibility('private')">
+                                Post Private
+                            </button>
+                            <button :class="{ isActive: updateAccessibility === 'public' }"
+                                v-on:click="changeUpdateAccessibility('public')">
+                                Post Public
+                            </button>
+                        </div>
+                        <div>
+                            <button class="post_button" @click="createUpdate">
+                                Post
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- 完成数据库表之后放出这个列表 -->
+                <div id="updateList">
+                    <div class="update_list" v-for="update in updateList" :key="update.updateContent">
+                        <div class="update_box">
+                            <div class="update_info">
+                                <div class="update_content">{{update.updateContent}}</div>
+                                <div class="update_additional_info">
+                                    <div
+                                        :class="{ update_accessibility_private: update.updateAccessibility === 'private', update_accessibility_public: update.updateAccessibility === 'public'}">
+                                        {{update.updateAccessibility}}</div>
+                                    <div class="update_create_time">creater: {{update.creater}} create at:
+                                        {{update.createAt}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="/javascript/router.js"></script>
+    <script src="/javascript/updateList.js"></script>
+    <script src="/javascript/getUserInfo.js"></script>
+    <script src="/javascript/createUpdate.js"></script>
+</body>
+
+</html>

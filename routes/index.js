@@ -1,67 +1,41 @@
+const cookieParser = require('cookie-parser');
 var express = require('express');
 var router = express.Router();
-let count = 0;
+var path = require('path');
 
-/* GET home page. */
-router.get('/', function (req, res, next) {
-  console.log("代码执行")
-  res.render('test', { title: 'Express' });
-});
+router.get('/', (req, res) => {
+    const hasLogin = req.session.email
+    const role = req.session.role
+    if (hasLogin) {
+        res.cookie('name', req.session.name)
+        res.cookie('role', role)
+        switch (role) {
+            case "user": {
+                res.sendFile(path.join(process.cwd(), "public/user/organizationList.html"))
+                break
+            }
+            case "manager": {
+                res.sendFile(path.join(process.cwd(), "public/manager/memberList.html"))
+                break
+            }
+            case "admin": {
+                // admin 首页
+                res.sendFile(path.join(process.cwd(), "public/admin/organizationList.html"))
+                break
+            }
+        }
+    } else {
+        res.sendFile(path.join(process.cwd(), "public/organizationList.html"))
+    }
+})
 
-router.get('/brew', (req, res) => {
-  const drink = req.query.drink;
+router.use('/login', function (req, res, next) {
+    req.session.email ? res.redirect("/") : next()
+}, express.static('public/login.html'))
 
-  if (drink === 'tea') {
-    res.send('A delicious cup of tea!');
-  } else if (drink === 'coffee') {
-    res.status(418).send();
-  } else {
-    res.status(400).send();
-  }
-});
+router.use('/signup', function (req, res, next) {
+    req.session.email ? res.redirect("/") : next()
+}, express.static('public/signup.html'))
 
-let lastMessage = 'first';
-
-router.post('/pass-it-on', (req, res) => {
-
-  var message = req.body.message;
-
-  if (!message) {
-    res.status(400).send();
-  } else {
-    var oldMessage = lastMessage;
-    lastMessage = message;
-    res.lastMessage = oldMessage;
-    res.send(res.lastMessage);
-  }
-});
-
-router.post('/combine', (req, res) => {
-  const lines = req.body.lines;
-  const suffix = req.body.suffix;
-
-  let newLines = lines.map(lines => lines + suffix);
-  let respones = newLines.join('\n');
-  res.send(respones);
-});
 
 module.exports = router;
-
-let posts = [];
-
-router.post('/users/addpost', (req, res) => {
-  const post = req.body;
-  posts.unshift(post);
-  res.status(200).send();
-});
-
-router.get('/users/getposts', (req, res) => {
-  res.send(posts);
-});
-
-let cookie = 0;
-router.get('/cookie', (req, res) => {
-  cookie++;
-  res.cookie('task3_1', cookie);
-  res.status(200).send();
-});

@@ -14,42 +14,58 @@
         <div class="login_form">
             <div class="role_selector">
                 <div class="role_selector_title">
-                    Select login roler
+                    Select Log in Roler
                 </div>
-                <div class="role_box" v-on:click="changeRole('user')">
+                <div class="role_box" v-on:click="changeRole('user')"
+                    :style="{ backgroundColor: role === 'user' ? 'rgba(35, 50, 212, 0.188)' : ''}">
                     <img src="/image/icons/user.png" class="login_icon" />
                     <div class="login_role">
                         Log in as user
                     </div>
                 </div>
-                <div class="role_box" v-on:click="changeRole('organization')">
+                <div class="role_box" v-on:click="changeRole('manager')"
+                    :style="{ backgroundColor: role === 'manager' ? 'rgba(35, 50, 212, 0.188)' : ''}">
                     <img src="/image/icons/organization.png" class="login_icon" />
                     <div class="login_role">
-                        Log in as organization
+                        Log in as manager
                     </div>
                 </div>
-                <div class="role_box" v-on:click="changeRole('admin')">
+                <div class="role_box" v-on:click="changeRole('admin')"
+                    :style="{ backgroundColor: role === 'admin' ? 'rgba(35, 50, 212, 0.188)' : ''}">
                     <img src="/image/icons/admin.png" class="login_icon" />
                     <div class="login_role">
                         Log in as admin
                     </div>
                 </div>
-                <div>
-                    Now Role: {{ role }}
-                </div>
             </div>
             <div class="form_input">
                 <div class="form_input_title">
-                    Volunteer Organiztion
-                </div>
-                <div>
-                    Log in to your Account as {{ role }}
+                    <div>
+                        Volunteer Organiztion
+                    </div>
+                    <div>
+                        Log in as {{ role }}
+                    </div>
                 </div>
                 <form id="loginForm">
-                    <input type="email" id="email" placeholder="Email" required>
-                    <input type="password" id="password" placeholder="Password" required>
-                    <button type="submit">Login</button>
+                    <div class="form_field">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="Email" v-model="email">
+                        <p class="form_field_error" v-if="errors?.email">{{errors.email}}</p>
+                    </div>
+                    <div class="form_field">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="Password" v-model="passWord">
+                        <p class="form_field_error" v-if="errors?.email">{{errors.passWord}}</p>
+                    </div>
+                    <div class="errormsg_from_be" v-if="errorMsgFromBE">
+                        {{errorMsgFromBE}}
+                    </div>
+                    <button type="submit" @click="checkForm">Login</button>
                 </form>
+                <div class="form_input_footer">
+                    Don't have an account yet <a href="/signup">Sign up</a>
+                </div>
             </div>
         </div>
     </div>
