@@ -18,7 +18,7 @@ router.get("/getUserList", (req, res) => {
 
         const userList = results.map((userInfo) => {
             return ({
-                id: userInfo.user_phonenumber,
+                id: userInfo.user_id,
                 name: userInfo.user_name,
                 email: userInfo.user_email,
                 creaetAt: dayjs(userInfo.created_at).format('YYYY-MM-DD')
@@ -140,6 +140,28 @@ router.post('/addNewAdmin', async (req, res) => {
             }
 
             res.json({ result: "Add new Admin successful" })
+        });
+})
+
+router.post('/deleteUser', async (req, res) => {
+    const db = getdb()
+    const { userId } = req.body
+
+    db.query(`
+        delete from users
+            where
+        user_Id = "${userId}"
+            `,
+        async (err, results) => {
+            if (err) {
+                // 处理重复注册的问题
+                console.log(err)
+                res.send("something wrong")
+                return
+            }
+            console.log(results)
+
+            res.json({ result: "delete succesfully" })
         });
 })
 

@@ -77,7 +77,11 @@ router.get('/getPublicUpdateList', (req, res) => {
 router.get('/publicUpdateListOfOrg', (req, res) => {
     const orgId = req.query
     if (orgId) {
-        res.sendFile(path.join(process.cwd(), "public/publicUpdate.html"))
+        if (req.session.email) {
+            res.sendFile(path.join(process.cwd(), "public/user/publicUpdate.html"))
+        } else {
+            res.sendFile(path.join(process.cwd(), "public/publicUpdate.html"))
+        }
     } else {
         res.redirect('/')
     }

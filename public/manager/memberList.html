@@ -42,14 +42,13 @@
         <div class="page_content_main">
             <div style="width: 95%; padding-top: 20px;" id="memberList">
                 <div class="list_title">
-                    List of branch organization:
+                    <div>MemberList of Organization:</div>
                 </div>
                 <div class="list_header">
                     <div>Name</div>
                     <div>Email</div>
                     <div>Phone Number</div>
                     <div>Address</div>
-                    <div>Action</div>
                 </div>
                 <div class="userList_row" v-for="member in memberList" :key="member.email">
                     <div>
@@ -64,7 +63,6 @@
                     <div>
                         {{member.address}}
                     </div>
-                    <div>delete_branch</div>
                 </div>
             </div>
         </div>

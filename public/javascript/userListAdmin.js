@@ -17,6 +17,9 @@ var app = new Vue({
                 console.log(userList)
                 this.userList = userList
             })
+        },
+        handleDeleteUser(userId) {
+            deleteUser(userId)
         }
     }
 })
@@ -34,9 +37,31 @@ function getOrganizationList() {
             }
         };
 
-        xhr.open("GET", "/admin/getOrgList");
+        xhr.open("GET", "/admin/getUserList");
         xhr.setRequestHeader("Accept", "*/*");
 
         xhr.send(data);
     })
+}
+
+function deleteUser(userId) {
+    const data = JSON.stringify({
+        userId
+    });
+
+    const xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
+
+    xhr.addEventListener("readystatechange", function () {
+        if (this.readyState === this.DONE) {
+            alert(JSON.parse(this.responseText).result)
+            location.reload()
+        }
+    });
+
+    xhr.open("POST", "/admin/deleteUser");
+    xhr.setRequestHeader("Accept", "*/*");
+    xhr.setRequestHeader("Content-Type", "application/json");
+
+    xhr.send(data);
 }

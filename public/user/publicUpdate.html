@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/stylesheets/pageLayout.css">
-    <link rel="stylesheet" href="/stylesheets/organization.css">
-    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/pageLayout.css">
+    <link rel="stylesheet" href="/stylesheets/updateList.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 </head>
 
 <body>
@@ -39,23 +39,22 @@
         <div class="page_content_header">
         </div>
         <div class="page_content_main">
-            <div id="app">
-                <!-- 这个 div 之后我们会使用 grid -->
-                <div class="grid-container">
-                    <div class="grid-column" v-for="org in orgList" :key="org.orgName">
-                        <div class="orgbox">
-                            <div class="orgbox_img_container">
-                                <img :src="`/image/organization/${org.orgImge}`" alt="封面" class="orgbox_img" />
-                            </div>
-                            <div class="org_title">
-                                {{org.orgName}}
-                            </div>
-                            <div class="org_description">
-                                {{org.orgDescription}}
-                            </div>
-                            <div class="orgbox_actionlist">
-                                <button @click="handleViewUpdate(org.orgId)">view update</button>
-                                <button @click="handleJoinIn(org.orgId)" v-if="!hasOrg">Join in</button>
+            <div style="width: 95%; padding-top: 20px;">
+                <div class="updateList_title">
+                    View New Updates:
+                </div>
+                <div id="updateList">
+                    <div class="update_list" v-for="update in updateList" :key="update.updateContent">
+                        <div class="update_box">
+                            <div class="update_info">
+                                <div class="update_content">{{update.updateContent}}</div>
+                                <div class="update_additional_info">
+                                    <div
+                                        :class="{ update_accessibility_private: update.updateAccessibility === 'private', update_accessibility_public: update.updateAccessibility === 'public'}">
+                                        {{update.updateAccessibility}}</div>
+                                    <div class="update_create_time">creater: {{update.creater}} create at:
+                                        {{update.createAt}}</div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -63,7 +62,10 @@
             </div>
         </div>
     </div>
-    <script src="/javascript/organization.js"></script>
+
+
+    <script src="/javascript/router.js"></script>
+    <script src="/javascript/getPublicUpdateOfOrg.js"></script>
     <script src="/javascript/getUserInfo.js"></script>
 </body>
 

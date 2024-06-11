@@ -31,3 +31,12 @@
 .userList_row>div {
     flex: 1;
 }
+
+.action_button {
+    color: #2477F2;
+    cursor: pointer;
+}
+
+.action_button:hover {
+    text-decoration: underline;
+}

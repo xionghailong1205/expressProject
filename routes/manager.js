@@ -2,7 +2,8 @@ var express = require('express');
 const { getdb } = require('../utils/createdb');
 var router = express.Router();
 var path = require('path');
-const dayjs = require('dayjs')
+const dayjs = require('dayjs');
+const { sendEmailToMemberList } = require('../utils/sendEmail');
 
 // 我们最后的工作是完善这里的中间件
 // router.use((req, res, next) => {
@@ -105,6 +106,7 @@ router.get("/eventList", (req, res) => {
 
 router.post('/createEvent', (req, res) => {
     const db = getdb()
+    const orgId = req.session.orgId
     const managerEmail = req.session.email ?? "xionghailong1@icloud.com"
 
     const {
@@ -137,6 +139,7 @@ router.post('/createEvent', (req, res) => {
 
         console.log(results)
         res.json({ result: "ceate successful" })
+        sendEmailToMember(orgId, `New Event: ${eventTitle}`, eventContent)
     })
 })
 
@@ -167,6 +170,7 @@ router.post('/createUpdate', (req, res) => {
 
         console.log(results)
         res.json({ result: "ceate successful" })
+        sendEmailToMember(orgId, `New Update`, updateContent)
     })
 })
 
@@ -333,5 +337,25 @@ router.get('/getRVSPedMemberListOfEvent', (req, res) => {
         res.json(RVSPMemberList)
     });
 })
+
+const sendEmailToMember = (orgId, subject, content) => {
+    const db = getdb()
+    db.query(`select * from users where memberof = ${orgId};`, async (err, results) => {
+        if (err) {
+            console.log(err)
+            res.json({
+                error: "something wrong"
+            })
+        }
+
+        const userList = results.map((userInfo) => {
+            return ({
+                email: userInfo.user_email,
+            })
+        })
+
+        sendEmailToMemberList(userList, subject, content).catch(console.error)
+    });
+}
 
 module.exports = router;

@@ -29,16 +29,19 @@ router.post('/handleLogin', function (req, res) {
                     const hashInDB = results[0].user_password
                     const name = results[0].user_name
                     const orgId = results[0].memberof
+                    console.log("orgId", orgId)
                     const passwordCorrect = await comparePassword(password, hashInDB)
                     if (passwordCorrect) {
                         // 如果密码正确, 我们设置 session 同时进行跳转
                         req.session.email = email
                         req.session.name = name
                         req.session.role = role
-                        req.session.orgId = orgId
                         res.cookie('name', name)
                         res.cookie('role', role)
-                        res.cookie('orgId', orgId)
+                        if (orgId) {
+                            req.session.orgId = orgId
+                            res.cookie('orgId', orgId)
+                        }
                         res.json({ result: "login as user" })
                     } else {
                         res.json({ error: "wrong password" })
@@ -66,6 +69,9 @@ router.post('/handleLogin', function (req, res) {
                         req.session.name = name
                         req.session.role = role
                         req.session.orgId = orgId
+                        res.cookie('name', name)
+                        res.cookie('role', role)
+                        res.cookie('orgId', orgId)
                         res.json({ result: "log in successful" })
                     } else {
                         res.json({ error: "wrong password" })
@@ -91,6 +97,8 @@ router.post('/handleLogin', function (req, res) {
                         req.session.email = email
                         req.session.name = name
                         req.session.role = role
+                        res.cookie('name', name)
+                        res.cookie('role', role)
                         res.json({ result: "log in successful" })
                     } else {
                         res.json({ error: "wrong password" })
