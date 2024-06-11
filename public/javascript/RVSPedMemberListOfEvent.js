@@ -3,10 +3,6 @@ var RVSPedMemberList = new Vue({
     data: {
         memberList: [
             {
-                name: "test",
-                email: "test",
-                number: "test",
-                rvspAt: "test",
             }
         ],
     },

@@ -21,9 +21,9 @@ var eventList = new Vue({
                 getEventList(setData, RVSPedEventList)
             })
         },
-        RVSPToEvent(eventName) {
+        RVSPToEvent(eventId) {
             const eventInfo = {
-                eventName
+                eventId
             }
 
             doRVSP(eventInfo)
@@ -49,7 +49,7 @@ function getEventList(setData, RVSPedEventList) {
             eventList = eventList.map(eventInfo => {
 
                 const hasRVSPed = Boolean(RVSPedEventList.find(RVSPedEventInfo => {
-                    return RVSPedEventInfo.eventName === eventInfo.eventTitle
+                    return RVSPedEventInfo.eventId === eventInfo.eventId
                 }))
 
                 return ({

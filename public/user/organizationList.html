@@ -55,7 +55,7 @@
                             </div>
                             <div class="orgbox_actionlist">
                                 <button>view update</button>
-                                <button @click="handleJoinIn(org.orgId)">Join in</button>
+                                <button @click="handleJoinIn(org.orgId)" v-if="!hasOrg">Join in</button>
                             </div>
                         </div>
                     </div>

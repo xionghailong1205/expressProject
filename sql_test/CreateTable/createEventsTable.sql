@@ -1,6 +1,6 @@
 CREATE TABLE events (
     event_id INT PRIMARY KEY AUTO_INCREMENT,
-    event_title VARCHAR(255) NOT NULL UNIQUE,
+    event_title VARCHAR(255) NOT NULL,
     event_content VARCHAR(255) NOT NULL,
     open_time TIMESTAMP NOT NULL,
     close_time TIMESTAMP NOT NULL,

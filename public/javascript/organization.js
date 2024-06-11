@@ -5,6 +5,7 @@ var example1 = new Vue({
         orgList: [
 
         ],
+        hasOrg: false
     },
     mounted() {
         // 在组件挂载后获取数据
@@ -17,15 +18,29 @@ var example1 = new Vue({
                 const orgList = dataFromBE.map(orgInfo => {
                     return {
                         orgId: orgInfo.org_id,
-                        orgName: orgInfo.org_name ?? "尚未设置组织名",
-                        orgDescription: orgInfo.org_description ?? "尚未设置介绍",
-                        orgImge: orgInfo.org_img ?? "default.png"
+                        orgName: orgInfo.org_name,
+                        orgDescription: orgInfo.org_description,
+                        orgImge: orgInfo.org_img
                     }
                 })
                 this.orgList = orgList
             }
 
+            const cookieString = document.cookie;
+            const cookiePairs = cookieString.split('; ');
+
+            for (let pair of cookiePairs) {
+                pair = decodeURIComponent(pair)
+                const [name, value] = pair.split('=');
+                if (name === 'orgId') {
+                    this.hasOrg = true
+                }
+            }
+
             getOrganizationList(setData)
+        },
+        handleViewUpdate(orgId) {
+            location.href = `/publicUpdateListOfOrg?orgId=${orgId}`
         },
         handleJoinIn(orgId) {
             const requestBody = {

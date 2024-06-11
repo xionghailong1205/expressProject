@@ -72,7 +72,7 @@ router.get("/eventList", (req, res) => {
         return
     }
 
-    db.query(`SELECT events.event_title, events.event_content, events.event_content, events.update_at, events.open_time, events.close_time, managers.manager_name
+    db.query(`SELECT events.*, managers.manager_name
     FROM
         events
         INNER JOIN managers ON events.createby = managers.manager_email
@@ -87,6 +87,7 @@ router.get("/eventList", (req, res) => {
 
         const eventList = results.map((eventInfo) => {
             return ({
+                eventId: eventInfo.event_id,
                 eventTitle: eventInfo.event_title,
                 eventContent: eventInfo.event_content,
                 updateAt: dayjs(eventInfo.update_at).format('YYYY-MM-DD'),

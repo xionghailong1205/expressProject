@@ -36,7 +36,7 @@ function createNewEvent(eventData) {
 
     xhr.addEventListener("readystatechange", function () {
         if (this.readyState === this.DONE) {
-            alert(JSON.parse(this.responseText.result));
+            alert(JSON.parse(this.responseText).result);
         }
     });
 

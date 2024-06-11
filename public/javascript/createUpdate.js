@@ -31,6 +31,7 @@ function doCreateUpdate(newUpdate) {
         if (this.readyState === this.DONE) {
             console.log(this.responseText);
             // 刷新页面
+            location.reload()
         }
     });
 

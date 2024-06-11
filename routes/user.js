@@ -103,10 +103,10 @@ router.get('/getRVSPedEventList', (req, res) => {
     if (userEmail) {
         db.query(`
                 SELECT
-                    events.event_title
+                    events.event_id
                 FROM
                     rvsp
-                INNER JOIN events ON rvsp.rvsp_of = events.event_title
+                INNER JOIN events ON rvsp.rvsp_of = events.event_id
                 WHERE
                     rvsp.rvsp_maker = "${userEmail}"
             `, async (err, results) => {
@@ -119,7 +119,7 @@ router.get('/getRVSPedEventList', (req, res) => {
 
             const hasRVSPEventList = results.map(eventInfo => {
                 return ({
-                    eventName: eventInfo.event_title
+                    eventId: eventInfo.event_id
                 })
             })
 
@@ -132,7 +132,7 @@ router.get('/getRVSPedEventList', (req, res) => {
 
 router.post('/doRVSP', (req, res) => {
     const {
-        eventName
+        eventId
     } = req.body
 
     const userEmail = req.session.email
@@ -143,13 +143,14 @@ router.post('/doRVSP', (req, res) => {
         INSERT INTO
             rvsp (rvsp_maker, rvsp_of)
         VALUES
-            ("${userEmail}", "${eventName}");
+            ("${userEmail}", "${eventId}");
     `, async (err, results) => {
         if (err) {
             console.log(err)
             res.json({
                 error: "something wrong"
             })
+            return
         }
 
         res.json({
@@ -186,6 +187,7 @@ router.post('/handleJoinIn', (req, res) => {
             res.json({
                 error: "something wrong"
             })
+            return
         }
 
         req.session.orgId = orgId

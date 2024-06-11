@@ -36,6 +36,9 @@ router.post('/handleLogin', function (req, res) {
                         req.session.name = name
                         req.session.role = role
                         req.session.orgId = orgId
+                        res.cookie('name', name)
+                        res.cookie('role', role)
+                        res.cookie('orgId', orgId)
                         res.json({ result: "login as user" })
                     } else {
                         res.json({ error: "wrong password" })
@@ -178,6 +181,9 @@ router.post('handleCreateNewAdmin', (req, res) => {
 router.use('/handleLogout', function (req, res) {
     req.session.destroy();
     res.clearCookie('name', { path: "/" });
+    res.clearCookie('role', { path: "/" });
+    res.clearCookie('orgId', { path: "/" });
+    res.clearCookie('connect.sid', { path: "/" });
     res.redirect('/')
 })
 
