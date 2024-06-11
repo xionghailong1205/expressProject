@@ -165,4 +165,72 @@ router.post('/deleteUser', async (req, res) => {
         });
 })
 
+router.get("/modifyOrgDetail", (req, res) => {
+    const isManger = req.session.role === "admin"
+    if (isManger) {
+        res.sendFile(path.join(process.cwd(), "public/admin/modifyOrg.html"))
+    } else {
+        res.status(401).send('Unauthorized');
+    }
+})
+
+router.get('/orgDetail', (req, res) => {
+    const orgId = req.query.orgId
+    const db = getdb()
+
+    db.query(`
+        select * from volunteerOrganizations
+            where
+        org_id = "${orgId}"
+            `,
+        async (err, results) => {
+            if (err) {
+                // 处理重复注册的问题
+                console.log(err)
+                res.send("something wrong")
+                return
+            }
+
+            res.json(results[0])
+        });
+})
+
+router.post('/updateOrgDetail', (req, res) => {
+    const db = getdb()
+    const {
+        orgId,
+        newName,
+        newEmail,
+        newDescription,
+        newBranchOf,
+
+    } = req.body
+
+    db.query(`
+        UPDATE volunteerOrganizations
+            SET
+                org_name = "${newName}",
+                org_email = "${newEmail}",
+                org_description = "${newDescription}",
+                branchof = ${newBranchOf}
+            WHERE
+                org_id = ${orgId};
+            `,
+        async (err, results) => {
+            if (err) {
+                // 处理重复注册的问题
+                console.log(err)
+                const errorCode = err.code
+                if (errorCode === "ER_DUP_ENTRY") {
+                    res.send({ error: "Organization has existed." })
+                    return
+                }
+                res.send("something wrong")
+                return
+            }
+
+            res.json({ result: "update successful" })
+        });
+})
+
 module.exports = router;

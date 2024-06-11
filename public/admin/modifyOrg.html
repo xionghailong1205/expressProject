@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <link rel="stylesheet" href="/stylesheets/pageLayout.css">
+    <link rel="stylesheet" href="/stylesheets/userProfile.css">
+    <link rel="stylesheet" href="/stylesheets/admin/admin_organization_manager.css">
+</head>
+
+<body>
+    <div class="page_sideBar_container" id="userInfo">
+        <div class="page_sideBar_logo">
+            My Organization
+        </div>
+        <div class="sidebar-router-container">
+            <div class="page_sideBar_router" data-nowpage="true">
+                <a href="/">Organization List</a>
+            </div>
+            <div class="page_sideBar_router">
+                <a href="/admin/userList">User List</a>
+            </div>
+            <div class="page_sideBar_router">
+                <a href="/admin/adminProfile">Admin Profile</a>
+            </div>
+            <div class="page_sideBar_router">
+                <a href="/admin/addNewAdmin">Add New Admin</a>
+            </div>
+            <div class="log_state">
+                <p class="log_state_help"><span class="info_role">{{userInfo.role}}</span> | <span
+                        class="info_name">{{userInfo.name}}</span></p>
+                <p class="log_state_action"><a href="/handleLogOut">Log out</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="page_content_container">
+        <div class="page_content_header">
+        </div>
+        <div class="page_content_main">
+            <div class="profile_form_container" id="profileForm">
+                <div class="organization_cover">
+                    <img :src="`/image/organization/${orgImg}`" />
+                </div>
+                <div class="profile_form_row">
+                    <div class="profile_form_column">
+                        <label for="org_id">Organization Id</label>
+                        <input name="org_id" id="org_id" v-model="orgId" readonly
+                            style="border: none; outline: none;" />
+                    </div>
+                    <div class="profile_form_column">
+                        <label for="org_name">Organization Name</label>
+                        <input name="org_name" id="org_name" v-model="orgName" />
+                    </div>
+                </div>
+                <div class="profile_form_row">
+                    <div class="profile_form_column">
+                        <label for="org_email">Organization Email</label>
+                        <input name="org_email" id="org_email" v-model="orgEmail" />
+                    </div>
+                    <div class="profile_form_column">
+                        <label for="org_description">Organization Description</label>
+                        <input name="org_description" id="org_description" v-model="orgDsp" />
+                    </div>
+                </div>
+                <div class="profile_form_row">
+                    <div class="profile_form_column">
+                        <label for="select">Select an organization:</label>
+                        <select v-model="branchof" id="select">
+                            <option v-for="organization in organizationList" :key="organization.name"
+                                :value="organization.id" v-if="organization.id!==orgId">{{organization.name}}</option>
+                        </select>
+                    </div>
+                    <div class="profile_form_column" style="visibility: hidden;">
+                        <label for="placeHolder">branch of</label>
+                        <input name="placeHolder" id="placeHolder" />
+                    </div>
+                </div>
+                <div class="profile_form_commitrow">
+                    <div class="profile_form_commitbutton">
+                        <button @click="updateOrgDetail">save change</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/javascript/router.js"></script>
+    <script src="/javascript/modifyOrgInfo.js"></script>
+    <script src="/javascript/getUserInfo.js"></script>
+</body>
+
+</html>

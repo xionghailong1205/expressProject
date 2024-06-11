@@ -17,6 +17,9 @@ var app = new Vue({
                 console.log(orgList)
                 this.orgList = orgList
             })
+        },
+        navigateToModifyPage(orgId) {
+            location.href = `/admin/modifyOrgDetail?orgId=${orgId}`
         }
     }
 })

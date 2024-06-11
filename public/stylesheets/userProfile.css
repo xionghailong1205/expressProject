@@ -53,7 +53,8 @@
     color: gray;
 }
 
-.profile_form_column input {
+.profile_form_column input,
+select {
     height: 30px;
 }
 
