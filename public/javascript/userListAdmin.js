@@ -18,8 +18,8 @@ var app = new Vue({
                 this.userList = userList
             })
         },
-        handleDeleteUser(userId) {
-            deleteUser(userId)
+        handleDeleteUser(userEmail) {
+            deleteUser(userEmail)
         }
     }
 })
@@ -44,9 +44,9 @@ function getOrganizationList() {
     })
 }
 
-function deleteUser(userId) {
+function deleteUser(userEmail) {
     const data = JSON.stringify({
-        userId
+        userEmail
     });
 
     const xhr = new XMLHttpRequest();

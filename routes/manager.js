@@ -146,6 +146,7 @@ router.post('/createEvent', (req, res) => {
 router.post('/createUpdate', (req, res) => {
     const db = getdb()
     const managerEmail = req.session.email ?? "xionghailong1@icloud.com"
+    const orgId = req.session.orgId
 
     const {
         updateContent,

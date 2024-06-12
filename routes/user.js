@@ -191,12 +191,10 @@ router.post('/handleJoinIn', (req, res) => {
         }
 
         req.session.orgId = orgId
+        res.cookie('orgId', orgId)
         res.json({
             result: "Join successful"
         })
-
-        req.session.orgId = orgId
-        res.cookie('orgId', orgId)
     });
 })
 

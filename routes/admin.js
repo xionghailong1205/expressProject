@@ -145,12 +145,10 @@ router.post('/addNewAdmin', async (req, res) => {
 
 router.post('/deleteUser', async (req, res) => {
     const db = getdb()
-    const { userId } = req.body
+    const { userEmail } = req.body
 
     db.query(`
-        delete from users
-            where
-        user_Id = "${userId}"
+        delete from rvsp where rvsp_maker = "${userEmail}";
             `,
         async (err, results) => {
             if (err) {
@@ -160,8 +158,21 @@ router.post('/deleteUser', async (req, res) => {
                 return
             }
             console.log(results)
+            db.query(`
+                delete from users where user_email = "${userEmail}";
+                    `,
+                async (err, results) => {
+                    if (err) {
+                        // 处理重复注册的问题
+                        console.log(err)
+                        res.send("something wrong")
+                        return
+                    }
+                    console.log(results)
 
-            res.json({ result: "delete succesfully" })
+
+                    res.json({ result: "delete succesfully" })
+                });
         });
 })
 
